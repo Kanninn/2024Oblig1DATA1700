@@ -180,8 +180,4 @@ function SletteBilettene(){
 }
 
 
-//-----------------------------Slette bilettene-----------------------------------------
-function SletteBilettene(){
-    bilettsammling = [];
-    arrayut.textContent="";
-}
+
