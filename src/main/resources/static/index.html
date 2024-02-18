@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Kino Bestiling</title>
+    <script src="Oblig1.js" defer></script>
 </head>
 <body>
 <h1> Bestill din bilett</h1>
@@ -10,15 +11,60 @@
 <label for = "valg"> Velg Filmen</label>
 
 <select id="valg" name="valg">
-    <option value="opsjon1"> Den Mørke Prinsen</option>
+    <option disabled selected>-Velg en Film-</option>
+    <option value="Den Mørke Prinsen"> Den Mørke Prinsen</option>
     <option value="opsjon2"> Elsa on ICE</option>
 </select>
+<span id="errorValg" style="color: red;"></span><br>
+<!-- Husk å legge til en if for if value= opsjon 1 eller fikse det -->
 
 <br>
 <br>
 
-<label for="antall"> Antall biletter:</label>
+<label for="antall"> Antall biletter: </label>
 <input type="number" id="antall" name="antall" oninput="validerAntall(this)" style="width: 35px">
+<span id="error1" style="color: red; position: absolute; left: 250px"></span><br>
+
+<br>
+<br>
+<div>
+    <label for="fornavn">Fornavn: </label>
+    <input type="text" id="fornavn" name="fornavan" oninput="validerFornavn(this)" style="position: absolute; left: 80px">
+    <span id="error2" style="color: red; position: absolute; left: 250px"></span><br>
+
+    <br>
+    <br>
+
+    <label for="etternavn">Etternavn: </label>
+    <input type="text" id="etternavn" name="etternavan" oninput="validerEtternavn(this)" style="position: absolute; left: 80px">
+    <span id="error3" style="color: red; position: absolute; left: 250px"></span><br>
+</div>
+<br>
+<br>
+
+<div>
+    <label for="epost">Epost:  </label>
+    <input type="text" id="epost" name="epost" oninput="validerEpost(this)" style="position: absolute; left: 80px">
+    <span id="error4" style="color: red; position: absolute; left: 250px" ></span><br>
+</div>
+
+<br>
+<br>
+<div>
+    <label for="telefon">Mobilnr: </label>
+    <input type="number" name="telefon" id="telefon" oninput="validerTelefon(this)" style="position: absolute; left: 80px">
+    <span id="error5" style="color: red; position: absolute; left: 250px"></span><br>
+</div>
+<br>
+<br>
+
+<button id="kjøp" name="kjøp" onclick="leggeTilBiletter()">Kjøp biletten</button>
+
+<br>
+<br>
+<div id="arrayut"></div>
+
+
 
 </body>
 </html>
