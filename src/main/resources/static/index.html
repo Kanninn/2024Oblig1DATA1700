@@ -12,7 +12,7 @@
 
 <select id="valg" name="valg">
     <option disabled selected>-Velg en Film-</option>
-    <option value="Den Mørke Prinsen"> Den Mørke Prinsen</option>
+    <option value="Aladin"> Aladin</option>
     <option value="opsjon2"> Elsa on ICE</option>
 </select>
 <span id="errorValg" style="color: red;"></span><br>
@@ -22,7 +22,7 @@
 <br>
 
 <label for="antall"> Antall biletter: </label>
-<input type="number" id="antall" name="antall" oninput="validerAntall(this)" style="width: 35px">
+<input type="number" id="antall" min="0" name="antall" oninput="validerAntall(this)" style="width: 35px">
 <span id="error1" style="color: red; position: absolute; left: 250px"></span><br>
 
 <br>
@@ -58,11 +58,16 @@
 <br>
 <br>
 
-<button id="kjøp" name="kjøp" onclick="leggeTilBiletter()">Kjøp biletten</button>
+<button id="kjøp" name="kjøp" onclick="leggeTilBiletter()">Kjøp billetten</button>
 
 <br>
 <br>
 <div id="arrayut"></div>
+
+<br>
+<br>
+
+<button id="slettArray" name="slettArray" onclick="SletteBilettene()"> Slett alle billetter</button>
 
 
 

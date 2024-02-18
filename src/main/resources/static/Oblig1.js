@@ -97,8 +97,8 @@ function leggeTilBiletter(){
         document.getElementById("errorValg").textContent="";
     }
 
-    if (innantall=== ""){
-        document.getElementById("error1").textContent = "Dette feltet kan ikke være tomt";
+    if (innantall=== "" || innantall <=0){
+        document.getElementById("error1").textContent = "Ugyldig antall biletter";
         return;
     } else {
         document.getElementById("error1").textContent="";
@@ -160,7 +160,14 @@ function skrivUtBilett(){
         var utTekst ="";
 
         bilettsammling.forEach(function (biletten, index){
-            utTekst += "Bilett " + (index + 1) + ": " + biletten.bfilm + biletten.bantall + biletten.bfornavn + biletten.betternavn + biletten.bepost + biletten.btelefon + "<br>";
+            utTekst += "Bilett " + (index + 1) + ": " + biletten.bfilm +" " + biletten.bantall +" "+ biletten.bfornavn +" "+ biletten.betternavn +" "+ biletten.bepost +" "+ biletten.btelefon + "<br>";
         });
         inhold.innerHTML = utTekst;
+}
+
+
+//-----------------------------Slette bilettene-----------------------------------------
+function SletteBilettene(){
+    bilettsammling = [];
+    arrayut.textContent="";
 }
