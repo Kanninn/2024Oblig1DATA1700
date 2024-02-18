@@ -13,21 +13,21 @@
 <select id="valg" name="valg">
     <option disabled selected>-Velg en Film-</option>
     <option value="Aladin"> Aladin</option>
-    <option value="opsjon2"> Elsa on ICE</option>
+    <option value="Elsa"> Elsa </option>
 </select>
 <span id="errorValg" style="color: red;"></span><br>
-<!-- Husk å legge til en if for if value= opsjon 1 eller fikse det -->
+<!-- oppretter en select der man kan velge mellom filmer, under er det laget en span for feilmelding dersom noe er feil, se js-->
 
 <br>
 <br>
-
+<!-- nesten alle feltene fungere på samme måte, enten man tar inn bruker input og leder det videre til JS ved hjelp av id'en, eller en onaction blir brukt ved knapper for å utøve en funksjon i JS-->
 <label for="antall"> Antall biletter: </label>
 <input type="number" id="antall" min="0" name="antall" oninput="validerAntall(this)" style="width: 35px">
 <span id="error1" style="color: red; position: absolute; left: 250px"></span><br>
 
 <br>
 <br>
-<div>
+<div> <!-- input feltene er i en div for at feilmeldigen kommer riktig og ikke helt nederst (men vedsiden av feltet). ps: posisjonering av ting er ikke løst svært eligant, men på forelsening ble det agt at det er funksjonene som blir vurdert ikke "stylen" -->
     <label for="fornavn">Fornavn: </label>
     <input type="text" id="fornavn" name="fornavan" oninput="validerFornavn(this)" style="position: absolute; left: 80px">
     <span id="error2" style="color: red; position: absolute; left: 250px"></span><br>

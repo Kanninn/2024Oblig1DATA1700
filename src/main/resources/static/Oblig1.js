@@ -1,4 +1,5 @@
 
+// denne funksjonen skjekker om tallet som er satt inn er et tall (isNan) og skriver ut feilmeldig, som blir tatt bort dersom  feilen opphees.
 function validerAntall(input){
     if (isNaN(input.value)){
         input.setCustomValidity("Skriv inn et tall");//Skriver feilmelding
@@ -7,7 +8,7 @@ function validerAntall(input){
         input.setCustomValidity("");//Tar bort feilmeldigen dersom tall er skrebet inn
     }
 }
-
+//Denne funksjonen sjekker valider om fronavnet har mer en en bokstav, her kunne man også sjekket etter tall med "if (/\d/.test(inn)) {" men det er noen navn eller kallenavn som innheolder tall, så jeg bestmete meg mot det
 var fornavnet ="";
 function validerFornavn(input){
 
@@ -17,6 +18,7 @@ function validerFornavn(input){
         fornavnet = inn;
     }
 }
+// denne funksjonenn sjekker det samme som den over, om det er mer enn 1 bokstav i navnet
 function validerEtternavn(input){
 
     var inn = document.getElementById("etternavn").value;
@@ -27,12 +29,12 @@ function validerEtternavn(input){
 }
 
 //---------------------------Epost-------------------------------------
-var epostFeil ="";
-document.getElementById("epost").addEventListener("blur", function () {
+var epostFeil ="";//innitialiserer epostFeil som global variabel, slik at den kan bli sett av alle deler av programmet
+document.getElementById("epost").addEventListener("blur", function () {//kobler ellementet epost og blur gjør at funksjoen først går når man har forlatt innput feltet
     var input = this.value;
     var feilmelding = document.getElementById("feil-melding");
-
-    var regex = /@/;
+//
+    var regex = /@/;//her brukes regex til å teste for om det er et alfakrøll i infputten fra brukern
     if (!regex.test(input)){
         if (!feilmelding){
             feilmelding = document.createElement("div");
@@ -41,7 +43,7 @@ document.getElementById("epost").addEventListener("blur", function () {
             feilmelding.style.color="red";
             feilmelding.style.fontSize="12px";
             this.parentNode.appendChild(feilmelding);
-            epostFeil = "1";
+            epostFeil = "1";//dersom regex testen er positiv vil alt dette skje, med feilmelding og oppdatering av variablen
         }
     } else{
         if (feilmelding){
@@ -52,11 +54,11 @@ document.getElementById("epost").addEventListener("blur", function () {
 
 });
 //--------------------------------Telefon------------------------------------------------------------
-var telefonFeil="";
-document.getElementById("telefon").addEventListener("blur", function (){
+var telefonFeil="";//Golobal variabel initialiseres
+document.getElementById("telefon").addEventListener("blur", function (){//samme som i epost
     var input = this.value;
     var feilmelding = document.getElementById("feil-melding")
-
+//her brukes regex for å teste om det er minst 8 tall i inpuetet, siden alle norske mobilnummre har minst 8 tall
     var regex = /^\d{8}$/
     if (!regex.test(input)){
         if (!feilmelding){
@@ -66,11 +68,11 @@ document.getElementById("telefon").addEventListener("blur", function (){
             feilmelding.style.color="orange";
             feilmelding.style.fontSize="12px";
             this.parentNode.appendChild(feilmelding);
-            telefonFeil ="1";
+            telefonFeil ="1";//dersom regex testen er positiv vil alt over skje
         }
     } else{
         if (feilmelding){
-            feilmelding.remove();
+            feilmelding.remove();//dersom brukern retter opp feilen vil feilmeldingen går bort
             telefonFeil="0"
         }
     }
@@ -79,6 +81,7 @@ document.getElementById("telefon").addEventListener("blur", function (){
 
 var bilettsammling = []; //arrayet som lagrer bilett objektene
 
+//funksjonen henter det brukeren skrev inn og mellom lagrer det i "inn" variablene
 function leggeTilBiletter(){
     var innFilm = document.getElementById("valg").value;
     var innantall = document.getElementById("antall").value;
@@ -87,7 +90,8 @@ function leggeTilBiletter(){
     var innEpost = document.getElementById("epost").value;
     var innTelefon = document.getElementById("telefon").value;
 
-    /* Sjekker om alle feltene har noe i seg */
+    /* Sjekker om alle feltene har noe i seg, for å fange opp dersom brukeren har glemt å fylle inn et felt, da kommer en egen feilmelding fra hvis det er fylt inn feil
+    * dette funkjer ganske likt på alle, man skekker om "inn" variablen er lik noe den ikke er med === og setter så en feil melding eller ingen ting */
 
 
     if (innFilm ==="-Velg en Film-"){
@@ -116,7 +120,7 @@ function leggeTilBiletter(){
         document.getElementById("error3").textContent="";
     }
 
-//dette gjør at man kan skrive inn enten en epost eller mobilnummer og ikke må ha begge, siden man kun trenger en måte å kontakte kjøoeren på
+//gjennom å ogaå sjekke om det er en epostfeil i telefonfeilen slik det er gjort her, holder det å skrive inn enten en epost eller mobilnummer og man må ikke ha begge, siden man kun trenger en måte å kontakte kjøoeren på
     if (innEpost=== "" || epostFeil==="1"){
         if (innTelefon=== ""){
             document.getElementById("error4").textContent = "Skriv inn riktig info eller fyll ut";
@@ -128,7 +132,7 @@ function leggeTilBiletter(){
         document.getElementById("error4").textContent="";
     }
 
-
+//samme som ved sjekken over
     if (innTelefon=== "" || telefonFeil==="1"){
         if (innEpost=== ""){
             document.getElementById("error5").textContent = "Skriv inn riktig info eller fyll ut";
@@ -141,7 +145,7 @@ function leggeTilBiletter(){
     }
 
 
-
+//lopprettet objektet og setter inn alle verdiene som brukeren har satt inn
     var biletten = {
         bfilm : innFilm,
         bantall : innantall,
@@ -151,10 +155,12 @@ function leggeTilBiletter(){
         btelefon : innTelefon
     };
     bilettsammling.push(biletten)
+    //"pusher" objektet til arrayet slik at billeten lagres
 
     skrivUtBilett();
 }
 
+//funksjonen kobbles til arrayut og bruker en forEach funksjon for å printe ut hvert elemet i objektet
 function skrivUtBilett(){
         var inhold = document.getElementById("arrayut");
         var utTekst ="";
@@ -162,7 +168,15 @@ function skrivUtBilett(){
         bilettsammling.forEach(function (biletten, index){
             utTekst += "Bilett " + (index + 1) + ": " + biletten.bfilm +" " + biletten.bantall +" "+ biletten.bfornavn +" "+ biletten.betternavn +" "+ biletten.bepost +" "+ biletten.btelefon + "<br>";
         });
-        inhold.innerHTML = utTekst;
+        inhold.innerHTML = utTekst;//teksten skrives ut i arrayut feltet
+}
+
+
+//-----------------------------Slette bilettene-----------------------------------------
+//dersom knappen blir trykket og fuksjonen settes igang vil bilettsammling arrayet blir satt opp på nytt(tømt) og arrayut diven vil blå tømt for tekst
+function SletteBilettene(){
+    bilettsammling = [];
+    arrayut.textContent="";
 }
 
 
