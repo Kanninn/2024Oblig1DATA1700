@@ -178,10 +178,7 @@ function SletteBilettene(){
     bilettsammling = [];
     arrayut.textContent="";
 }
+//ved merge ble denne fuknsjonen duplisert litt usikker på hvorfor, hvis du kan lese dette ble problemt løst..
 
 
-//-----------------------------Slette bilettene-----------------------------------------
-function SletteBilettene(){
-    bilettsammling = [];
-    arrayut.textContent="";
-}
+
